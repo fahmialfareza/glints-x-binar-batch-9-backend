@@ -1,8 +1,0 @@
-const path = require('path'); // Import path module
-
-module.exports = {
-  'config': path.resolve('config', 'mysql.json'), // Config location sequelize in /config/mysql.json
-  'models-path': path.resolve('models', 'mysql'), // Models in /models/mysql directory
-  'seeders-path': path.resolve('seeders', 'mysql'), // Seeders in /seeders/mysql directory
-  'migrations-path': path.resolve('migrations', 'mysql') // Migrations in /migrations/mysql directory
-};
