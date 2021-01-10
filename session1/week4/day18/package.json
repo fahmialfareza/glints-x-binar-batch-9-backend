@@ -1,0 +1,17 @@
+{
+  "name": "day18",
+  "version": "1.0.0",
+  "description": "Coba express and mysql",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon -r ./index.js"
+  },
+  "author": "Reza",
+  "license": "ISC"
+}

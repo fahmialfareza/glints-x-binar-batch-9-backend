@@ -1,0 +1,1 @@
+[{"status":"fulfilled","value":"Mas Heru\n"},{"status":"fulfilled","value":"belum\n"},{"status":"fulfilled","value":"mandi\n"},{"status":"rejected","reason":{"errno":-2,"code":"ENOENT","syscall":"open","path":"contents/content5.txt"}}]

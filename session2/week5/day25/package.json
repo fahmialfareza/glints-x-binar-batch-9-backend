@@ -1,0 +1,20 @@
+{
+  "name": "day25",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.8.0",
+    "mongoose": "^5.11.7",
+    "mongoose-delete": "^0.5.3",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon -r ./index.js"
+  },
+  "author": "Reza",
+  "license": "ISC"
+}
