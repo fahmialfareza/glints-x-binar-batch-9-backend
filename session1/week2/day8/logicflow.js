@@ -19,8 +19,8 @@ function checkTheEggAvailability() {
   return false
 }
 
-function goToTheMarket(shouldWe) {
-  if (shouldWe == false) {
+function goToTheMarket(checkTheEggAvailability) {
+  if (checkTheEggAvailability == false) {
     console.log(`Go to the market`);
     console.log(`Buy the egg`);
     console.log(`Back to home`);
