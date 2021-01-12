@@ -10,7 +10,7 @@ You will also learn how to show that someone is typing in a chat application.
 
 Here is a screenshot of it looks and functionality.
 
-![alt text](https://github.com/rexeze/anonymouse-realtime-chat-app/blob/master/screenshots/chatscreenshot.gif "Chat Screen Shot")
+![alt text](https://gitlab.com/fahmialfareza/glints-x-binar-batch-9-backend/-/blob/chatApplication/screenshots/chatscreenshot.gif "Chat Screen Shot")
 
 ## Code Samples
 
