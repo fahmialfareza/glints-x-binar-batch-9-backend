@@ -2,6 +2,11 @@
 class Bangun {
   constructor(name) {
     this.name = name
+
+    // It is abstract class
+    if (this.constructor === BangunDatar) {
+      throw new Error('This is abstract')
+    }
   }
 
   menghitungVolume() {
