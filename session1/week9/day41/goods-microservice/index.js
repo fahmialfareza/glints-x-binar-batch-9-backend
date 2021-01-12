@@ -19,3 +19,5 @@ app.use('/goods', goodRoutes); // If access localhost:3002, it will be go to goo
 app.listen(3002, () => {
   console.log('Goods running on port 3002!');
 })
+
+module.exports = app;

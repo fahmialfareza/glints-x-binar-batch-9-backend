@@ -19,3 +19,5 @@ app.use('/', userRoutes); // If access localhost:3000, it will be go to userRout
 app.listen(3000, () => {
   console.log('User running on port 3000!');
 })
+
+module.exports = app;

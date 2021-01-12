@@ -19,3 +19,5 @@ app.use('/suppliers', supplierRoutes); // If access localhost:3001, it will be g
 app.listen(3001, () => {
   console.log('Supplier running on port 3001!');
 })
+
+module.exports = app;
