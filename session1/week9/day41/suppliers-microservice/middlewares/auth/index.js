@@ -5,13 +5,6 @@ const https = require('https'); // Import https
 const JWTstrategy = require('passport-jwt').Strategy; // Import JWTstrategy
 const ExtractJWT = require('passport-jwt').ExtractJwt; // Import ExtractJWT
 
-// Axios intance for request
-const axiosRequest = axios.create({
-  httpsAgent: new https.Agent({
-    rejectUnauthorized: false // Pass SSL certificate
-  })
-});
-
 passport.use(
   'user',
   new JWTstrategy({
@@ -31,7 +24,7 @@ passport.use(
         };
 
         // Get response for getUser request
-        let response = await axiosRequest(getUser);
+        let response = await axios(getUser);
 
         // Get user data from the response
         let userLogin = response.data.user;

@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt'); // Import bcrypt
 const JWTstrategy = require('passport-jwt').Strategy; // Import JWT Strategy
 const ExtractJWT = require('passport-jwt').ExtractJwt; // Import ExtractJWT
 
-// If user sign up
 passport.use(
   'signup',
   new localStrategy({
@@ -35,6 +34,28 @@ passport.use(
     },
   )
 );
+
+let signup = (req, res, next) => {
+  passport.authenticate('signup', {
+    session: false
+  }, function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      res.status(401).json({
+        status: 'Error',
+        message: info.message
+      });
+      return;
+    }
+
+    req.user = user;
+
+    next();
+  })(req, res, next);
+}
 
 // If user login
 passport.use(
@@ -75,6 +96,27 @@ passport.use(
     }
   )
 )
+
+let login = (req, res, next) => {
+  passport.authenticate('login', {
+    session: false
+  }, function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      res.status(401).json({
+        status: 'Error',
+        message: info.message
+      });
+      return;
+    }
+
+    req.user = user;
+
+    next();
+  })(req, res, next);
+}
 
 // Strategy for transaction role
 passport.use(
@@ -126,3 +168,5 @@ passport.use(
     }
   )
 )
+
+module.exports = { signup, login };

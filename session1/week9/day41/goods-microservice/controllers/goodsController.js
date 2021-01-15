@@ -8,6 +8,8 @@ class GoodsController {
   // Get all goods data
   async getAll(req, res) {
     try {
+      console.log(req.user);
+
       // Get all goods
       let getGoods = await good.find({}, '_id name price supplier createdAt updatedAt');
 

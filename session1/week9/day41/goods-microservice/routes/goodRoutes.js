@@ -6,7 +6,33 @@ const auth = require('../middlewares/auth'); // Import auth
 const GoodsController = require('../controllers/goodsController'); // Import GoodsController
 const goodsValidator = require('../middlewares/validators/goodsValidator'); // Import goodsValidator
 
-router.get('/', passport.authenticate('user', { session: false }), GoodsController.getAll); // It will get all of goods data
+let checkUser = async (req, res, next) => {
+  if (req.header('Authorization')) {
+    passport.authenticate('user', {
+      session: false
+    }, function(err, user, info) {
+      if (err) {
+        return next(err);
+      }
+
+      if (!user) {
+        res.status(401).json({
+          status: 'Error',
+          message: info.message
+        });
+        return;
+      }
+
+      req.user = user;
+
+      next();
+    })(req, res, next);
+  } else {
+    next();
+  }
+};
+
+router.get('/', checkUser, GoodsController.getAll); // It will get all of goods data
 router.get('/:id', [passport.authenticate('user', { session: false }), goodsValidator.getOne], GoodsController.getOne); // It will get one good data
 router.post('/', [passport.authenticate('user', { session: false }), goodsValidator.create], GoodsController.create); // It will create a good
 router.put('/:id', [passport.authenticate('user', { session: false }), goodsValidator.update], GoodsController.update); // It will update a good

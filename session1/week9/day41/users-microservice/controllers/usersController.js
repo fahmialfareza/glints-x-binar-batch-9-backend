@@ -6,12 +6,12 @@ const jwt = require('jsonwebtoken'); // Import jsonwebtoken
 class UsersController {
 
   // If user pass the signup or login authorization, it will go to this function to create and get token
-  async login(user, req, res) {
+  async login(req, res) {
     try {
       // Create a varible that will be saved in token
       const body = {
-        id: user.id,
-        email: user.email
+        id: req.user.id,
+        email: req.user.email
       };
 
       // Create a token for the user

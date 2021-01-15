@@ -6,43 +6,9 @@ const UserController = require('../controllers/userController'); // import userC
 const userValidator = require('../middlewares/validators/userValidator'); // import userValidator
 
 // if user go to localhost:3000/signup
-router.post('/signup', [userValidator.signup, function(req, res, next) {
-  passport.authenticate('signup', {
-    session: false
-  }, function(err, user, info) {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      res.status(401).json({
-        status: 'Error',
-        message: info.message
-      });
-      return;
-    }
-
-    UserController.signup(user, req, res, next);
-  })(req, res, next);
-}]);
+router.post('/signup', [userValidator.signup, auth.signup], UserController.login);
 
 // if user go to localhost:3000/login
-router.post('/login', [userValidator.login, function(req, res, next) {
-  passport.authenticate('login', {
-    session: false
-  }, function(err, user, info) {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      res.status(401).json({
-        status: 'Error',
-        message: info.message
-      });
-      return;
-    }
-
-    UserController.login(user, req, res, next);
-  })(req, res, next);
-}]);
+router.post('/login', [userValidator.login, auth.login], UserController.login);
 
 module.exports = router; // export router

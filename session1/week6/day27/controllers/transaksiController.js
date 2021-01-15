@@ -6,7 +6,6 @@ const {
 
 // make TransaksiController class
 class TransaksiController {
-
   // Get all data function
   async getAll(req, res) {
     // Find all transaksi collection data

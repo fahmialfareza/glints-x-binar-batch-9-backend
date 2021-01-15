@@ -2,6 +2,8 @@ const {barang, pemasok} = require('../models/mongodb');
 
 class BarangController {
   async getAll(req,res) {
+    console.log(req.user)
+
     barang.find({}).then(result=>{
       res.json({
         status:"Succes get all the data",
@@ -16,6 +18,11 @@ class BarangController {
       res.json({
         status:"Succes get data",
         data:result
+      })
+    }).catch(err => {
+      res.json({
+        status: "Error",
+        errors: err
       })
     })
   }

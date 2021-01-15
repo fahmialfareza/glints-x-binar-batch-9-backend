@@ -27,9 +27,11 @@ router.post('/signup', [usersValidator.signup, function(req, res, next) {
     }
 
     // If not error, it will go to login function in UsersController
-    UsersController.login(user, req, res);
+    req.user = user;
+
+    next();
   })(req, res, next);
-}]);
+}], UsersController.login);
 
 // if user go to localhost:3000/login
 router.post('/login', [usersValidator.login, function(req, res, next) {
@@ -52,9 +54,11 @@ router.post('/login', [usersValidator.login, function(req, res, next) {
     }
 
     // If not error, it will go to login function in UsersController
-    UsersController.login(user, req, res);
+    req.user = user;
+
+    next();
   })(req, res, next);
-}]);
+}], UsersController.login);
 
 // Request authorization
 router.get('/authorization', function(req, res, next) {
