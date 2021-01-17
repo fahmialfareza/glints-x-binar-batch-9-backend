@@ -44,7 +44,7 @@ deploy:
     - hello
   script:
     # Only copy changed files to project folder
-    - cp -r -u * .env* $PROJECT_DIR_MYSQL
+    - cp -r -u * .env.production $PROJECT_DIR_MYSQL
     - cd $PROJECT_DIR_MYSQL
     - npm install
     - sequelize db:create --env=production
