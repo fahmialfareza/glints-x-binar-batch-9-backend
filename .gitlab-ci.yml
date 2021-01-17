@@ -36,7 +36,7 @@ deploy:
     - hello
   script:
     # Only copy changed files to project folder
-    - cp -r -u * .env* $PROJECT_DIR_MONGO
+    - cp -r -u * .env.production $PROJECT_DIR_MONGO
     - cd $PROJECT_DIR_MONGO
     - npm install
     # Restart NodeJS service
