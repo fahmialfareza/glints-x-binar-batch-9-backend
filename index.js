@@ -26,21 +26,16 @@ app.use('/', voteRoutes);
 Socket.io Setting
 */
 io.on('connection', async function(socket) {
-
-  await vote.aggregate([{
-      "$group": {
-        "_id": "$name",
-        "total_vote": {
-          "$sum": 1
-        }
+  let voteAggregated = await vote.aggregate([{
+    "$group": {
+      "_id": "$name",
+      "total_vote": {
+        "$sum": 1
       }
-    }],
-    async function(err, results) {
-      if (err) throw err;
-
-      socket.emit('vote', results);
     }
-  );
+  }]);
+
+  socket.emit('vote', voteAggregated);
 });
 
 // Start
