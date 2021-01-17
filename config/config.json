@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "oauth_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "mysql",
+    "database": "oauth_test",
+    "host": "mysql",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "hello",
+    "password": "12051418",
+    "database": "oauth_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

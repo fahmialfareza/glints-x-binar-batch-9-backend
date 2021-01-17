@@ -12,19 +12,27 @@ cache:
 test:
   # Docker image
   image: node:latest
-  # Attach Test job to Test stage
+  # MySQL Services
   services:
-    - mongo:latest
+    - mysql:latest
+  # MySQL Variable
+  variables:
+    # Configure mysql service (https://hub.docker.com/_/mysql/)
+    MYSQL_DATABASE: $MYSQL_DB
+    MYSQL_ROOT_PASSWORD: $MYSQL_PASS
+  # Attach Test job to Test stage
   stage: test
   # Config to use GitLab Shared Runner with Executor Docker
   tags:
     - docker
   script:
     - npm install
+    - npm install -g sequelize-cli
+    - sequelize db:migrate --env=test
     - npm run test
   # Defines the names of branches and tags the job runs for
   only:
-    - mongo-ci-cd
+    - mysql-ci-cd
 
 # Deploy job
 deploy:
@@ -36,11 +44,13 @@ deploy:
     - hello
   script:
     # Only copy changed files to project folder
-    - cp -r -u * .env* $PROJECT_DIR_MONGO
-    - cd $PROJECT_DIR_MONGO
+    - cp -r -u * .env* $PROJECT_DIR_MYSQL
+    - cd $PROJECT_DIR_MYSQL
     - npm install
+    - sequelize db:create --env=production
+    - sequelize db:migrate --env=production
     # Restart NodeJS service
     - npm run stop || true
     - npm run start
   only:
-    - mongo-ci-cd
+    - mysql-ci-cd

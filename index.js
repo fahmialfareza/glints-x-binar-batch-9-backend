@@ -1,10 +1,16 @@
-const express = require('express')
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const passport = require('passport');
+const cookieSession = require('cookie-session')
+const userRoutes = require('./routes/userRoutes');
+
 const app = express();
-const bodyParser = require('body-parser')
-const transaksiRoutes = require('./routes/transaksiRoutes');
-const barangRoutes = require('./routes/barangRoutes');
-const pelangganRoutes = require('./routes/pelangganRoutes');
-const pemasokRoutes = require('./routes/pemasokRoutes');
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -13,11 +19,10 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static('public'));
 
-app.use('/transaksi', transaksiRoutes);
-app.use('/barang', barangRoutes);
-app.use('/pelanggan', pelangganRoutes);
-app.use('/pemasok', pemasokRoutes);
+app.use('/', userRoutes);
 
-app.listen(3001, ()=> console.log("Server running on localhost:3000"))
+app.listen(3000, () => {
+  console.log('App running on port 3000');
+})
 
 module.exports = app;
