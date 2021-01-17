@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <style>
+    .vote-result-wrapper {
+      width: 700px;
+      height: 700px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Quick Vote</h1>
+  <div class="vote-result-wrapper">
+    <canvas id="vote-result"></canvas>
+  </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+<script>
+  // Setting socket
+  var socket = io();
+  var data;
+  var myChart;
+  var context;
+
+  socket.on('vote', function(response) {
+
+    var i = 0;
+
+    for (var key in response) {
+      data.labels[i] = response[i]._id;
+      data.datasets[0].data[i] = response[i].total_vote;
+      i++;
+    }
+
+    // Update chart
+    myChart.update();
+  });
+
+  // Chart Data
+  data = {
+    labels: [],
+    datasets: [{
+      label: [],
+      data: [],
+    }]
+  };
+
+  context = document.getElementById('vote-result').getContext('2d');
+  myChart = new Chart(context, {
+    type: 'bar',
+    data: data,
+    animation: {
+      animateScale: true
+    }
+  });
+</script>
+
+</html>
