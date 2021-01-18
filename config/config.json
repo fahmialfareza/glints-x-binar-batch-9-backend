@@ -10,7 +10,7 @@
     "username": "root",
     "password": "mysql",
     "database": "oauth_test",
-    "host": "mysql",
+    "host": "mysql", 
     "dialect": "mysql"
   },
   "production": {
