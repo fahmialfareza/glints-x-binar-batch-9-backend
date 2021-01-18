@@ -17,7 +17,7 @@
     "username": "admin",
     "password": "12345678",
     "database": "oauth_production",
-    "host": "oauthproduction.coynohz9l3ig.ap-southeast-1.rds.amazonaws.com",
+    "host": "oauth.coynohz9l3ig.ap-southeast-1.rds.amazonaws.com",
     "port": 3306,
     "dialect": "mysql",
     "dialectOptions": {
