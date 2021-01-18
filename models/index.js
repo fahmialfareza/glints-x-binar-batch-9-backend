@@ -15,9 +15,4 @@ const pelanggan = require('./pelanggan')
 const pemasok = require('./pemasok')
 const transaksi = require('./transaksi')
 
-module.exports = {
-  barang,
-  pelanggan,
-  pemasok,
-  transaksi
-}
+module.exports = { barang, pelanggan, pemasok, transaksi }
