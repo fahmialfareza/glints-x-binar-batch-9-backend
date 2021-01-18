@@ -30,7 +30,7 @@ describe('User', () => {
     })
   })
 
-  describe('/POST Login', () => {
+  describe('/POST Sign In', () => {
     it('It should make user login and get authentication_key (jwt)', (done) => {
       chai.request(server)
         .post('/signin')
