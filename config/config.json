@@ -16,8 +16,12 @@
   "production": {
     "username": "admin",
     "password": "12345678",
-    "database": "oauthproduction",
-    "host": "oauthproduction.coynohz9l3ig.ap-southeast-1.rds.amazonaws.com",
-    "dialect": "mysql"
+    "database": "oauth_production",
+    "host": "oauthproduction.coynohz9l3ig.ap-southeast-1.rds.amazonaws.com:3306",
+    "port": 3306,
+    "dialect": "mysql",
+    "dialectOptions": {
+        "ssl": "Amazon RDS"
+    }
   }
 }
