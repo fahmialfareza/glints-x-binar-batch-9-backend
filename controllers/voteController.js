@@ -30,7 +30,7 @@ class VoteController {
         }
       ]);
 
-      req.io.to('1').emit('vote', voteAggregated);
+      req.io.to(req.body.id).emit('vote', voteAggregated);
 
       return res.status(200).json({
         message: 'Successfully added.'
