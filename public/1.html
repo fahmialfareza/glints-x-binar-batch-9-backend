@@ -27,6 +27,8 @@
   var myChart;
   var context;
 
+  socket.emit('join', {room: '1' });
+
   socket.on('vote', function(response) {
 
     var i = 0;

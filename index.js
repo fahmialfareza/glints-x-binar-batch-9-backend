@@ -26,6 +26,15 @@ app.use('/', voteRoutes);
 Socket.io Setting
 */
 io.on('connection', async function(socket) {
+
+  console.log(socket.id + " connected!");
+
+  socket.on('join', (msg) => {
+    console.log(msg);
+
+    socket.join(msg.room);
+  });
+
   let voteAggregated = await vote.aggregate([{
     "$group": {
       "_id": "$name",
@@ -36,6 +45,10 @@ io.on('connection', async function(socket) {
   }]);
 
   socket.emit('vote', voteAggregated);
+
+  socket.on("disconnect", (reason) => {
+    console.log(socket.id + " disconnected because " + reason);
+  });
 });
 
 // Start
