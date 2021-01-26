@@ -17,6 +17,16 @@ const TransaksiSchema = new mongoose.Schema({
   total: {
     type: mongoose.Schema.Types.Decimal128,
     required:true
+  },
+  status: {
+    type: String,
+    required: true
+  },
+  token: {
+    type: String
+  },
+  redirect_url: {
+    type: String
   }
 }, {
   timestamps: {
