@@ -56,7 +56,7 @@ class TransaksiController {
         },
         "expiry": {
           "unit": "minutes",
-          "duration": 60
+          "duration": 5
         }
       });
 
@@ -123,6 +123,8 @@ class TransaksiController {
       status = "success";
     } else if (data.status_code == 201) {
       status = "pending";
+    } else if (data.status_code == 407) {
+      status = "failed";
     }
 
     let updateTransaksi = await transaksi.findOneAndUpdate({
